@@ -45,23 +45,24 @@ function homepage_init() {
 *         $homepage_listTWO_title, $homepage_listTWO_imgurl, $homepage_listTWO_post
 *         $homepage_listTWO_box1, $homepage_listTWO_box2
 */
-  register_setting('homepage_setting-group','homepage_setting', 'homepage_setting_options');
+  register_setting('homepage_title_setting_group','homepage_title_setting', 'homepage_title_setting_options');
 }
 
-function homepage_setting_options($input) {
+function homepage_title_setting_options($input) {
   $input['title'] = sanitize_text_field( $input['title'] );
   $input['post'] = sanitize_text_field( $input['post'] );
 }
 
 function homepage_setting_page(){
   ?>
-  	<div class="HPS-plugon">
+  	<div class="HPS-plugin">
   		<h2>Home page setting</h2>
 
   		<form method="post" action="options.php">
-  			<?php settings_fields( 'homepage_setting-group' ); ?>
-  			<?php $homepage_setting = get_option( 'homepage_setting' ); ?>
+  			<?php settings_fields( 'homepage_title_setting_group' ); ?>
+  			<?php $homepage_setting = get_option( 'homepage_title_setting' ); ?>
   			<table class="form-table">
+
   				<tr valign="top">
   					<th scope="row">Title</th>
   					<td><input type="text" name="homepage_setting[title]" value="<?php echo esc_attr($homepage_setting['title'] ); ?>" /></td>
@@ -71,6 +72,7 @@ function homepage_setting_page(){
   					<th scope="row">Post</th>
   					<td><input type="text" name="homepage_setting[post]" value="<?php echo esc_attr($homepage_setting['post'] ); ?>" /></td>
   				</tr>
+
   			</table>
   			<p class="submit"><input type="submit" class="button-primary" value="Save Changes" /></p>
   		</form>
